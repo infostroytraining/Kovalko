@@ -21,12 +21,14 @@ public class App {
                 for (Map.Entry entry : commands.entrySet()) {
                     String key = entry.getKey().toString().trim().toLowerCase();
                     String value = entry.getValue().toString().trim().toLowerCase();
-                    if (key.equals("-i") || key.equals("--input"))
+                    if (key.equals("-i") || key.equals("--input")) {
+                        text = null;
                         try {
                             text = analyzer.getContentFromFile(value);
                         } catch (IOException ex) {
                             System.out.println("Incorrect path!");
                         }
+                    }
                     else if ((key.equals("-t") || key.equals("--task")) && text != null) {
                         String task = value;
                         switch (task) {
