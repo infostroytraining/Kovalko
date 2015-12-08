@@ -21,7 +21,6 @@ public class App {
                 for (Map.Entry entry : commands.entrySet()) {
                     String key = entry.getKey().toString().trim().toLowerCase();
                     String value = entry.getValue().toString().trim().toLowerCase();
-                    System.out.println(key + " : " + value);
                     if (key.equals("-i") || key.equals("--input"))
                         try {
                             text = analyzer.getContentFromFile(value);
