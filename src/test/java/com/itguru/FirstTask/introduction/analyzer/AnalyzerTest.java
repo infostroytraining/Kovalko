@@ -1,6 +1,10 @@
 package com.itguru.FirstTask.introduction.analyzer;
 
-import com.itguru.FirstTask.analyzer.Analyzer;
+import com.itguru.FirstTask.analyzer.tasks.Duplicates;
+import com.itguru.FirstTask.analyzer.tasks.Frequency;
+import com.itguru.FirstTask.analyzer.tasks.Length;
+import com.itguru.FirstTask.analyzer.tasks.TaskFactory;
+import com.itguru.FirstTask.analyzer.utils.TextUtils;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -12,12 +16,12 @@ import static junit.framework.Assert.assertNotNull;
 
 public class AnalyzerTest {
 
-    Analyzer analyzer = new Analyzer();
-
     @Test
     public void testGetTwoFrequentWords() throws IOException {
-        String text = analyzer.getContentFromFile("text.txt");
-        Map<String, Integer> twoFrequentWords = analyzer.getTwoFrequentWords(text);
+        String text = TextUtils.getContentFromFile("text.txt");
+        Frequency command = (Frequency) TaskFactory.getInstance("frequency");
+        assertNotNull(command);
+        Map<String, Integer> twoFrequentWords = command.execute(text, true);
         assertNotNull(twoFrequentWords);
         int index = 1;
         for (Map.Entry entry : twoFrequentWords.entrySet()) {
@@ -34,8 +38,10 @@ public class AnalyzerTest {
 
     @Test
     public void testGetThreeLongestWords() throws IOException {
-        String text = analyzer.getContentFromFile("text.txt");
-        List<String> twoFrequentWords = analyzer.getThreeLongestWords(text);
+        String text = TextUtils.getContentFromFile("text.txt");
+        Length lengthTask = (Length) TaskFactory.getInstance("length");
+        assertNotNull(lengthTask);
+        List<String> twoFrequentWords = lengthTask.execute(text, true);
         assertNotNull(twoFrequentWords);
         assertEquals(twoFrequentWords.get(0), "non-characteristic");
         assertEquals(twoFrequentWords.get(1), "embarrassing");
@@ -44,8 +50,10 @@ public class AnalyzerTest {
 
     @Test
     public void testFirstThreeWordsWithDuplicates() throws IOException{
-        String text = analyzer.getContentFromFile("text.txt");
-        List<String> words = analyzer.firstThreeWordsWithDuplicates(text);
+        String text = TextUtils.getContentFromFile("text.txt");
+        Duplicates duplicates = (Duplicates) TaskFactory.getInstance("duplicates");
+        assertNotNull(duplicates);
+        List<String> words = duplicates.execute(text, true);
         assertEquals(words.get(0), "FO");
         assertEquals(words.get(1), "ERA");
         assertEquals(words.get(2), "MEROL");
@@ -53,7 +61,7 @@ public class AnalyzerTest {
 
     @Test(expected = IOException.class)
     public void testGetContentFromFile() throws IOException {
-        String t = analyzer.getContentFromFile("text.txt");
+        String text = TextUtils.getContentFromFile("text.txt");
         throw new IOException();
     }
 

@@ -1,6 +1,8 @@
 package com.itguru.FirstTask;
 
-import com.itguru.FirstTask.analyzer.Analyzer;
+import com.itguru.FirstTask.analyzer.Command;
+import com.itguru.FirstTask.analyzer.tasks.TaskFactory;
+import com.itguru.FirstTask.analyzer.utils.TextUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.util.Map;
 
 public class App {
     public static void main(String[] args) {
-        Analyzer analyzer = new Analyzer();
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String text = null;
         while (true) {
@@ -24,24 +26,15 @@ public class App {
                     if (key.equals("-i") || key.equals("--input")) {
                         text = null;
                         try {
-                            text = analyzer.getContentFromFile(value);
+                            text = TextUtils.getContentFromFile(value);
                         } catch (IOException ex) {
                             System.out.println("Incorrect path!");
                         }
                     }
                     else if ((key.equals("-t") || key.equals("--task")) && text != null) {
                         String task = value;
-                        switch (task) {
-                            case "frequency":
-                                analyzer.getTwoFrequentWords(text);
-                                break;
-                            case "length":
-                                analyzer.getThreeLongestWords(text);
-                                break;
-                            case "duplicates":
-                                analyzer.firstThreeWordsWithDuplicates(text);
-                                break;
-                        }
+                        Command command = TaskFactory.getInstance(task);
+                        if (command != null) command.execute(text);
                     }
                     else if (key.equals("--help")) help();
                     else if (text == null) System.out.println("You must enter file path!");
