@@ -7,7 +7,7 @@
 </head>
 <body>
 <div align="center">
-  <form method="post" action="/registration">
+  <form method="post" action="/registration" enctype="multipart/form-data">
     <table cellspacing="15">
         <tr>
           <td>Name</td>
@@ -27,6 +27,11 @@
         <tr>
            <td>Password</td>
            <td><input type="password" name="password" placeholder="Enter yor password"></td>
+        </tr>
+
+        <tr>
+            <td>Avatar</td>
+            <td><input type="file" name="file" placeholder="Attach your avatar"></td>
         </tr>
 
       <tr>
