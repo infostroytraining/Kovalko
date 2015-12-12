@@ -28,8 +28,11 @@ public class CaptchaServlet extends HttpServlet {
                 { 'f', 'r', 'e', 'e', 'b', 's', 'd' },
                 { 'u', 'b', 'u', 'n', 't', 'u' },
                 { 'j', 'a', 'v', 'a' },
-                { 'p', 'r', 'o', 'g', 'r', 'a', 'm', 'm', 'e', 'r' },
-                { 'j', 'e', 't', 't', 'y' }
+                { 'p', 'r', 'o', 'g', 'r', 'a', 'm' },
+                { 'j', 'e', 't', 't', 'y' },
+                { 's', 'u', 'p', 'e', 'r', 'm', 'a', 'n' },
+                { 's', 'e', 'r', 'v', 'l', 'e', 't' },
+                { 'p', 'y', 't', 'h', 'o', 'n' },
         };
 
 

@@ -1,7 +1,6 @@
 package controllers;
 
 import domain.User;
-import memory.Users;
 import services.RegistrationService;
 import services.ValidatorService;
 
@@ -23,18 +22,6 @@ public class RegistrationController extends HttpServlet {
         super.init();
         this.validatorService = new ValidatorService();
         this.registrationService = new RegistrationService();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doGet(req, resp);
-        Users.getAllUsers().forEach(item -> {
-            try {
-                resp.getWriter().write(item.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     @Override

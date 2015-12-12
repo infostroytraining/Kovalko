@@ -13,7 +13,7 @@ public class UserDAOImpl implements UserDAO<User> {
         try {
             dbUser = Users.getAllUsers()
                     .stream()
-                    .filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password))
+                    .filter(user -> user.getEmail().equals(email) || user.getPassword().equals(password))
                     .collect(Collectors.toList()).get(0);
         } catch (Exception ex) {
             return null;
